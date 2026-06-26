@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"math/rand"
+	pathpkg "path"
 	"strconv"
 	"strings"
 
@@ -88,7 +89,7 @@ func (c *Config) NormalizedPath() string {
 	if !strings.HasPrefix(path, "/") {
 		path = "/" + path
 	}
-	if !strings.HasSuffix(path, "/") {
+	if !strings.HasSuffix(path, "/") && !strings.Contains(pathpkg.Base(path), ".") {
 		path += "/"
 	}
 	return path
